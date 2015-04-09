@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # class2 start
   get 'books/index'
-
   get 'books/show'
 
   # get "/books" => "books#index", as: 'books'
@@ -12,7 +11,9 @@ Rails.application.routes.draw do
   get "/books/new" => "books#new", as: 'new_book'
   get "/books/:id" => "books#show", as: 'book'
   post "/books" => "books#create"
-
+  get "/books/:id/edit" => "books#edit", as: 'edit_book'
+  patch "/books/:id" => "books#update"
+  delete "/books/:id" => "books#destroy"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
