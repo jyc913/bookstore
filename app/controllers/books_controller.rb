@@ -14,18 +14,24 @@ before_action :set_book, only: [ :show, :edit, :update, :destroy ]
   @book = Book.new
   end
 
-  def create
-  @book = Book.new(book_params)
-  @book.save
-  redirect_to @book
-  end
-
   def edit
   end
 
+  def create
+  @book = Book.new(book_params)
+    if @book.save
+      redirect_to @book
+    else
+      render :new
+    end
+  end
+
   def update
-    @book.update(book_params)
-    redirect_to @book
+    if @book.update(book_params)
+      redirect_to @book
+    else
+      render :new
+    end
   end
 
   def destroy
