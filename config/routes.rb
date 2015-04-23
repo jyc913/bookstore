@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :reviews
+
   # class2 start
   get 'books/index'
   get 'books/show'
@@ -16,8 +18,10 @@ Rails.application.routes.draw do
   # patch "/books/:id" => "books#update"
   # delete "/books/:id" => "books#destroy"
 #class 3 end
-
-resources :books
+resources :books do
+  resources :reviews
+  get 'page/:page', :action => :index, :on => :collection
+end
 root 'books#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
